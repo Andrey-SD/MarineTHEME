@@ -1,0 +1,101 @@
+body {
+  font-family: "Arsenal", serif;
+}
+
+header {
+  background-color: #212121;
+  color: #d7d7d7;
+  padding: 0.5rem 0;
+}
+
+header .center-col {
+  justify-content: space-between;
+}
+
+.fl {
+  display: flex;
+}
+
+.center-col {
+  max-width: 1366px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+header .fl {
+  align-items: center;
+}
+
+.logo-container {
+  gap: 1.2rem;
+}
+
+.logo-image {
+  width: 64px;
+  border-radius: 20%;
+}
+
+.logo-text {
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.tel-link {
+  color: #d7d7d7;
+  font-size: 1.2rem;
+  border-right: 2px solid #d7d7d7;
+  padding-right: 1.25rem;
+  margin-right: 1.25rem;
+}
+
+.logo-link {
+  width: 70%;
+}
+
+.banner {
+  background-image: url("../images/banner-img.webp");
+  background-size: 100% 100%;
+  padding: 30px 0;
+  color: #000;
+  font-size: 30px;
+}
+
+.service-row {
+  /* width: 30%; */
+  margin: .9375rem 0;
+  gap: 15px;
+
+}
+
+.banner-head {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.service-logo {
+  width: 64px;
+}
+
+.servic-header {
+  font-size: 0.7em;
+}
+
+.service-description {
+  font-size: 0.6em;
+
+}
+
+@media (max-width: 768px) {
+  header .center-col {
+    display: block;
+  }
+
+  .logo-container,
+  .nav-container {
+    justify-content: center;
+  }
+
+  .nav-container {
+    margin: 1.25rem;
+  }
+}
