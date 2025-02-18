@@ -1,0 +1,18 @@
+.serv-price-table {
+  width: 80%;
+  font-size: 12px;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+.serv-price-table,
+.serv-price-table th,
+.serv-price-table td {
+  border: 1px solid;
+}
+
+.serv-price-table th,
+.serv-price-table td {
+  padding: 6px;
+  text-align: center;
+}
