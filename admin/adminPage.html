@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="uk-Ua">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/style/reset.css">
+  <link rel="stylesheet" href="/style/main.css">
+  <link rel="stylesheet" href="/style/adminPage.css">
+  <title>MarineTHEME</title>
+</head>
+
+<body>
+  <header>
+    <div class="fl center-col">
+      <div class="fl logo-container">
+        <img class="logo-image" src="/images/logo2.png" alt="logo">
+        <h1 class="logo-text">MarineTHEME</h1>
+      </div>
+      <div>
+        <nav>
+          <ul class="fl nav-container">
+            <li>
+              <a href="tel:+380123456789" class="tel-link">+38 012 3456789</a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="/images/icons8-facebook.svg" class="logo-link" alt="facebook">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="/images/icons8-instagram.svg" class="logo-link" alt="instagram">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="/images/icons8-telegram-logo.svg" class="logo-link" alt="telegram">
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="/images/icons8-tik-tok.svg" class="logo-link" alt="tik-tok">
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <section>
+    <form action="" method="get" id="form-car-info">
+      <h2>Інформація про автомобіль</h2>
+
+      <label for="image">Фото автомобіля:</label>
+      <input type="file" id="image" name="image" accept="image/*">
+
+      <label for="manufacturer">Виробник:</label>
+      <input type="text" id="manufacturer" name="manufacturer">
+
+      <label for="model">Модель:</label>
+      <input type="text" id="model" name="model">
+
+      <label for="year">Рік випуску:</label>
+      <input type="number" id="year" name="year" min="1900" max="2099">
+
+      <h3>Двигун</h3>
+
+      <label for="engine-name">Назва двигуна:</label>
+      <input type="text" id="engine-name" name="engine-name">
+
+      <label for="engine-capacity">Об'єм двигуна (л):</label>
+      <input type="number" step="0.1" id="engine-capacity" name="engine-capacity">
+
+      <label for="fuel-type">Тип пального:</label>
+      <select id="fuel-type" name="fuel-type">
+        <option value="patrol">Бензин</option>
+        <option value="diesel">Дизель</option>
+      </select>
+
+      <label for="fuel-consumption">Витрати пального (л/100 км):</label>
+      <input type="number" step="0.1" id="fuel-consumption" name="fuel-consumption">
+
+      <label for="fuel-cost">Вартість пального (грн/км):</label>
+      <input type="number" step="0.01" id="fuel-cost" name="fuel-cost">
+
+      <h3>Запчастини</h3>
+
+      <table id="parts-form-table">
+        <tbody>
+          <tr>
+            <td>
+              <!-- <label for="part-name">Назва запчастини:</label> -->
+              <select name="part-name" id="part-name">
+                <option value="oil">Мастило</option>
+                <option value="oil">Масляний фільтр</option>
+                <option value="oil">Колесо</option>
+                
+              </select>
+              <button onclick="addPart()">додати</button>
+            </td>
+            <td>
+              <!-- <label for="minPrice">Мінімальна ціна (грн):</label> -->
+              <input type="number" step="0.01" id="minPrice" name="minPrice">
+            </td>
+            <td>
+              <!-- <label for="comment1">Коментар до мінімальної ціни:</label> -->
+              <input type="text" id="comment1" name="comment1">
+            </td>
+            <td>
+
+              <!-- <label for="optimalPrice">Оптимальна ціна (грн):</label> -->
+              <input type="number" step="0.01" id="optimalPrice" name="optimalPrice">
+            </td>
+            <td>
+              <!-- <label for="comment2-text">Коментар до оптимальної ціни:</label> -->
+              <input type="text" id="comment2-text" name="comment2-text">
+            </td>
+            <td>
+              <!-- <label for="comment2-link">Посилання на оптимальну ціну:</label> -->
+              <input type="url" id="comment2-link" name="comment2-link">
+            </td>
+            <td>
+              <!-- <label for="servicePrice">Вартість обслуговування (грн):</label> -->
+              <input type="number" step="0.01" id="servicePrice" name="servicePrice">
+            </td>
+            <td>
+              <!-- <label for="comment3">Коментар до обслуговування:</label> -->
+              <input type="text" id="comment3" name="comment3">
+            </td>
+            <td>
+              <!-- <label for="mileage">Пробіг (км):</label> -->
+              <input type="number" step="1" id="mileage" name="mileage">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit">Надіслати</button>
+    </form>
+    <button onclick="addRow(this)">Додати рядок</button>
+  </section>
+
+  <script>
+const addRow = (btn) => {
+  
+  const tbody = btn.parentElement.querySelector("tbody");
+  console.log(tbody);
+  strHTML = `
+  <tr>
+    <td>
+      <!-- <label for="part-name">Назва запчастини:</label> -->
+      <select name="part-name" id="part-name">
+        <option value="oil">Мастило</option>
+        <option value="oil">Масляний фільтр</option>
+        <option value="oil">Колесо</option>
+      </select>
+    </td>
+    <td>
+      <!-- <label for="minPrice">Мінімальна ціна (грн):</label> -->
+      <input type="number" step="0.01" id="minPrice" name="minPrice">
+    </td>
+    <td>
+      <!-- <label for="comment1">Коментар до мінімальної ціни:</label> -->
+      <input type="text" id="comment1" name="comment1">
+    </td>
+    <
+      <!-- <label for="optimalPrice">Оптимальна ціна (грн):</label> -->
+      <input type="number" step="0.01" id="optimalPrice" name="optimalPrice">
+    </td>
+    <td>
+      <!-- <label for="comment2-text">Коментар до оптимальної ціни:</label> -->
+      <input type="text" id="comment2-text" name="comment2-text">
+    </td>
+    <td>
+      <!-- <label for="comment2-link">Посилання на оптимальну ціну:</label> -->
+      <input type="url" id="comment2-link" name="comment2-link">
+    </td>
+    <td>
+      <!-- <label for="servicePrice">Вартість обслуговування (грн):</label> -->
+      <input type="number" step="0.01" id="servicePrice" name="servicePrice">
+    </td>
+    <td>
+      <!-- <label for="comment3">Коментар до обслуговування:</label> -->
+      <input type="text" id="comment3" name="comment3">
+    </td>
+    <td>
+      <!-- <label for="mileage">Пробіг (км):</label> -->
+      <input type="number" step="1" id="mileage" name="mileage">
+    </td>
+  </tr>
+  `;
+  tbody.insertAdjacentHTML("beforeend", strHTML);
+}
+
+const addPart = () => {
+  prompt();
+};
+  </script>
+</body>
+
+</html>

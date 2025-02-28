@@ -1,7 +1,7 @@
 const price = [
   {
     id: "123",
-    name: "Мастило",
+    partName: "Мастило",
     minPrice: "",
     comment1: "",
     optimalPrice: "2769",
@@ -61,7 +61,7 @@ window.addEventListener("load", (event) => {
     const strHtml = `
     <tr>
       <td>${count}</td>
-      <td>${row.name}</td>
+      <td>${row.partName}</td>
       <td>${row.minPrice}</td>
       <td>${row.comment1}</td>
       <td>${row.optimalPrice}</td>

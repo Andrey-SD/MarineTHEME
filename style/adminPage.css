@@ -1,0 +1,44 @@
+
+
+#form-car-info {
+  width: 80%;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#form-car-info  label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#form-car-info  input,
+#form-car-info  select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#form-car-info  input[type="file"] {
+  border: none;
+}
+
+#form-car-info button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  background-color: #212121;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#form-car-info button:hover {
+  background-color: #151515;
+}
