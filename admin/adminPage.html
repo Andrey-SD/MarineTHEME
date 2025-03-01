@@ -8,9 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="/style/reset.css">
-  <link rel="stylesheet" href="/style/main.css">
-  <link rel="stylesheet" href="/style/adminPage.css">
+  <link rel="stylesheet" href="../style/reset.css">
+  <link rel="stylesheet" href="../style/main.css">
+  <link rel="stylesheet" href="../style/adminPage.css">
+  <link rel="stylesheet" href="../style/service-price.css">
   <title>MarineTHEME</title>
 </head>
 
@@ -18,7 +19,7 @@
   <header>
     <div class="fl center-col">
       <div class="fl logo-container">
-        <img class="logo-image" src="/images/logo2.png" alt="logo">
+        <img class="logo-image" src="../images/logo2.png" alt="logo">
         <h1 class="logo-text">MarineTHEME</h1>
       </div>
       <div>
@@ -29,22 +30,22 @@
             </li>
             <li>
               <a href="#">
-                <img src="/images/icons8-facebook.svg" class="logo-link" alt="facebook">
+                <img src="../images/icons8-facebook.svg" class="logo-link" alt="facebook">
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="/images/icons8-instagram.svg" class="logo-link" alt="instagram">
+                <img src="../images/icons8-instagram.svg" class="logo-link" alt="instagram">
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="/images/icons8-telegram-logo.svg" class="logo-link" alt="telegram">
+                <img src="../images/icons8-telegram-logo.svg" class="logo-link" alt="telegram">
               </a>
             </li>
             <li>
               <a href="#">
-                <img src="/images/icons8-tik-tok.svg" class="logo-link" alt="tik-tok">
+                <img src="../images/icons8-tik-tok.svg" class="logo-link" alt="tik-tok">
               </a>
             </li>
           </ul>
@@ -53,7 +54,7 @@
     </div>
   </header>
   <section>
-    <form action="" method="get" id="form-car-info">
+    <form action="" method="get" id="form-car-info" onsubmit="return false;">
       <h2>Інформація про автомобіль</h2>
 
       <label for="image">Фото автомобіля:</label>
@@ -88,20 +89,47 @@
       <label for="fuel-cost">Вартість пального (грн/км):</label>
       <input type="number" step="0.01" id="fuel-cost" name="fuel-cost">
 
-      <h3>Запчастини</h3>
+      <h3>Технічне обслуговування</h3>
 
-      <table id="parts-form-table">
+      <style>
+        #test td {
+          padding: 0;
+          padding-top: 5px;
+        }
+
+        #test td button {
+          padding: 0;
+          margin: 5px;
+          /* padding-top: 5px; */
+        }
+      </style>
+      <table class="serv-price-table maintenance" id="test" style="width: 100%; ">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Назва запчастини </th>
+            <th>Мінімальна вартість, грн.</th>
+            <th>Коментар</th>
+            <th>Отимальна вартість ціна/якість.грн.</th>
+            <th>Коментар</th>
+            <th>Вартість роботи, грн.</th>
+            <th>Коментар </th>
+            <th>Пробіг тис.км.</th>
+
+          </tr>
+        </thead>
         <tbody>
           <tr>
+            <td></td>
             <td>
               <!-- <label for="part-name">Назва запчастини:</label> -->
               <select name="part-name" id="part-name">
                 <option value="oil">Мастило</option>
                 <option value="oil">Масляний фільтр</option>
                 <option value="oil">Колесо</option>
-                
+
               </select>
-              <button onclick="addPart()">додати</button>
+              <button onclick="addPart(this)">додати</button>
             </td>
             <td>
               <!-- <label for="minPrice">Мінімальна ціна (грн):</label> -->
@@ -119,8 +147,86 @@
             <td>
               <!-- <label for="comment2-text">Коментар до оптимальної ціни:</label> -->
               <input type="text" id="comment2-text" name="comment2-text">
+              <!-- <label for="comment2-link">Посилання на оптимальну ціну:</label> -->
+              <input type="url" id="comment2-link" name="comment2-link">
             </td>
             <td>
+              <!-- <label for="servicePrice">Вартість обслуговування (грн):</label> -->
+              <input type="number" step="0.01" id="servicePrice" name="servicePrice">
+            </td>
+            <td>
+              <!-- <label for="comment3">Коментар до обслуговування:</label> -->
+              <input type="text" id="comment3" name="comment3">
+            </td>
+            <td>
+              <!-- <label for="mileage">Пробіг (км):</label> -->
+              <input type="number" step="1" id="mileage" name="mileage">
+            </td>
+            <td style="font-size: 25px; vertical-align: middle;">
+              <button onclick="removeRow(this)">&#128465;</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button onclick="addRow(this, 'maintenance')">Додати рядок</button>
+      <h3>Поточний ремонт</h3>
+
+      <style>
+        #test td {
+          padding: 0;
+          padding-top: 5px;
+        }
+
+        #test td button {
+          padding: 0;
+          margin: 5px;
+          /* padding-top: 5px; */
+        }
+      </style>
+      <table class="serv-price-table current-fix" id="test" style="width: 100%; ">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Назва запчастини </th>
+            <th>Мінімальна вартість, грн.</th>
+            <th>Коментар</th>
+            <th>Отимальна вартість ціна/якість.грн.</th>
+            <th>Коментар</th>
+            <th>Вартість роботи, грн.</th>
+            <th>Коментар </th>
+            <th>Пробіг тис.км.</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td>
+              <!-- <label for="part-name">Назва запчастини:</label> -->
+              <select name="part-name" id="part-name">
+                <option value="oil">Мастило</option>
+                <option value="oil">Масляний фільтр</option>
+                <option value="oil">Колесо</option>
+
+              </select>
+              <button onclick="addPart(this)">додати</button>
+            </td>
+            <td>
+              <!-- <label for="minPrice">Мінімальна ціна (грн):</label> -->
+              <input type="number" step="0.01" id="minPrice" name="minPrice">
+            </td>
+            <td>
+              <!-- <label for="comment1">Коментар до мінімальної ціни:</label> -->
+              <input type="text" id="comment1" name="comment1">
+            </td>
+            <td>
+
+              <!-- <label for="optimalPrice">Оптимальна ціна (грн):</label> -->
+              <input type="number" step="0.01" id="optimalPrice" name="optimalPrice">
+            </td>
+            <td>
+              <!-- <label for="comment2-text">Коментар до оптимальної ціни:</label> -->
+              <input type="text" id="comment2-text" name="comment2-text">
               <!-- <label for="comment2-link">Посилання на оптимальну ціну:</label> -->
               <input type="url" id="comment2-link" name="comment2-link">
             </td>
@@ -139,66 +245,86 @@
           </tr>
         </tbody>
       </table>
+      <button onclick="addRow(this, 'current-fix')">Додати рядок</button>
       <button type="submit">Надіслати</button>
     </form>
-    <button onclick="addRow(this)">Додати рядок</button>
+
   </section>
 
   <script>
-const addRow = (btn) => {
-  
-  const tbody = btn.parentElement.querySelector("tbody");
-  console.log(tbody);
-  strHTML = `
-  <tr>
-    <td>
-      <!-- <label for="part-name">Назва запчастини:</label> -->
-      <select name="part-name" id="part-name">
-        <option value="oil">Мастило</option>
-        <option value="oil">Масляний фільтр</option>
-        <option value="oil">Колесо</option>
-      </select>
-    </td>
-    <td>
-      <!-- <label for="minPrice">Мінімальна ціна (грн):</label> -->
-      <input type="number" step="0.01" id="minPrice" name="minPrice">
-    </td>
-    <td>
-      <!-- <label for="comment1">Коментар до мінімальної ціни:</label> -->
-      <input type="text" id="comment1" name="comment1">
-    </td>
-    <
-      <!-- <label for="optimalPrice">Оптимальна ціна (грн):</label> -->
-      <input type="number" step="0.01" id="optimalPrice" name="optimalPrice">
-    </td>
-    <td>
-      <!-- <label for="comment2-text">Коментар до оптимальної ціни:</label> -->
-      <input type="text" id="comment2-text" name="comment2-text">
-    </td>
-    <td>
-      <!-- <label for="comment2-link">Посилання на оптимальну ціну:</label> -->
-      <input type="url" id="comment2-link" name="comment2-link">
-    </td>
-    <td>
-      <!-- <label for="servicePrice">Вартість обслуговування (грн):</label> -->
-      <input type="number" step="0.01" id="servicePrice" name="servicePrice">
-    </td>
-    <td>
-      <!-- <label for="comment3">Коментар до обслуговування:</label> -->
-      <input type="text" id="comment3" name="comment3">
-    </td>
-    <td>
-      <!-- <label for="mileage">Пробіг (км):</label> -->
-      <input type="number" step="1" id="mileage" name="mileage">
-    </td>
-  </tr>
-  `;
-  tbody.insertAdjacentHTML("beforeend", strHTML);
-}
+    const addRow = (btn, className) => {
 
-const addPart = () => {
-  prompt();
-};
+      // const tbody = btn.parentElement.querySelector(`table.${className} tbody`);
+      const tbody = btn.parentElement.querySelector(`table.${className}`);
+      strHTML = `
+  <tr>
+            <td></td>
+            <td>
+              <!-- <label for="part-name">Назва запчастини:</label> -->
+              <select name="part-name" id="part-name">
+                <option value="oil">Мастило</option>
+                <option value="oil">Масляний фільтр</option>
+                <option value="oil">Колесо</option>
+
+              </select>
+              <button onclick="addPart(this)">додати</button>
+            </td>
+            <td>
+              <!-- <label for="minPrice">Мінімальна ціна (грн):</label> -->
+              <input type="number" step="0.01" id="minPrice" name="minPrice">
+            </td>
+            <td>
+              <!-- <label for="comment1">Коментар до мінімальної ціни:</label> -->
+              <input type="text" id="comment1" name="comment1">
+            </td>
+            <td>
+
+              <!-- <label for="optimalPrice">Оптимальна ціна (грн):</label> -->
+              <input type="number" step="0.01" id="optimalPrice" name="optimalPrice">
+            </td>
+            <td>
+              <!-- <label for="comment2-text">Коментар до оптимальної ціни:</label> -->
+              <input type="text" id="comment2-text" name="comment2-text">
+              <!-- <label for="comment2-link">Посилання на оптимальну ціну:</label> -->
+              <input type="url" id="comment2-link" name="comment2-link">
+            </td>
+            <td>
+              <!-- <label for="servicePrice">Вартість обслуговування (грн):</label> -->
+              <input type="number" step="0.01" id="servicePrice" name="servicePrice">
+            </td>
+            <td>
+              <!-- <label for="comment3">Коментар до обслуговування:</label> -->
+              <input type="text" id="comment3" name="comment3">
+            </td>
+            <td>
+              <!-- <label for="mileage">Пробіг (км):</label> -->
+              <input type="number" step="1" id="mileage" name="mileage">
+            </td>
+          </tr>
+  `;
+      tbody.insertAdjacentHTML("beforeend", strHTML);
+    }
+
+    const addPart = (btn) => {
+      const str = prompt("Введіть назву запчастини");
+      const select = btn.parentElement.querySelector("select");
+      select.insertAdjacentHTML("afterbegin", `
+      <option value="${str}">${str}</option>
+      `)
+    };
+
+    const removeRow = (btn) => {
+      if (confirm("Видалити рядок?")) {
+        const row = btn.closest('tr');
+        console.log(row);
+        
+        row.remove();
+        
+
+      }
+    }
+
+
   </script>
 </body>
 
