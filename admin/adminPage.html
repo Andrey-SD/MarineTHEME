@@ -61,7 +61,9 @@
       <input type="file" id="image" name="image" accept="image/*">
 
       <label for="manufacturer">Виробник:</label>
-      <input type="text" id="manufacturer" name="manufacturer">
+      <select name="manufacturer" id="manufacturer">
+        <option value=""></option>
+      </select>
 
       <label for="model">Модель:</label>
       <input type="text" id="model" name="model">
@@ -242,6 +244,9 @@
               <!-- <label for="mileage">Пробіг (км):</label> -->
               <input type="number" step="1" id="mileage" name="mileage">
             </td>
+            <td style="font-size: 25px; vertical-align: middle;">
+              <button onclick="removeRow(this)">&#128465;</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -250,8 +255,36 @@
     </form>
 
   </section>
-
+  <script src="../js/makersDB.js"></script>
   <script>
+    // Вибираємо унікальні значення за ключем 'maker-name'
+    const uniqueMakers = Array.from(new Set(makers.map(element => element["maker-name"])))
+      .map(name => makers.find(element => element["maker-name"] === name));
+
+    // Сортуємо за 'maker-name'
+    uniqueMakers.sort((a, b) => {
+      const nameA = a["maker-name"].toLowerCase();
+      const nameB = b["maker-name"].toLowerCase();
+      if (nameA < nameB) {
+        return -1; // a повинно йти перед b
+      }
+      if (nameA > nameB) {
+        return 1; // b повинно йти перед a
+      }
+      return 0; // якщо рівні
+    });
+
+    console.log(uniqueMakers);
+
+    const manufacturer = document.getElementById('manufacturer');
+    for (const element of uniqueMakers) {
+      manufacturer.insertAdjacentHTML("beforeend", `
+        <option value="${element["maker-name"]}">${element["maker-name"]}</option>
+      `);
+    }
+
+
+
     const addRow = (btn, className) => {
 
       // const tbody = btn.parentElement.querySelector(`table.${className} tbody`);
@@ -300,6 +333,9 @@
               <!-- <label for="mileage">Пробіг (км):</label> -->
               <input type="number" step="1" id="mileage" name="mileage">
             </td>
+            <td style="font-size: 25px; vertical-align: middle;">
+              <button onclick="removeRow(this)">&#128465;</button>
+            </td>
           </tr>
   `;
       tbody.insertAdjacentHTML("beforeend", strHTML);
@@ -317,9 +353,9 @@
       if (confirm("Видалити рядок?")) {
         const row = btn.closest('tr');
         console.log(row);
-        
+
         row.remove();
-        
+
 
       }
     }
